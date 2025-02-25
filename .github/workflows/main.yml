@@ -3,12 +3,12 @@ name: Deploy Produção
 on:
   pull_request:
     branches:
-      - master
-    types: 
+      - main
+    types:
       - closed
   push:
     branches:
-      - master 
+      - main
 
 jobs:
   deploy:
