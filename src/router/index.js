@@ -12,7 +12,7 @@ const router = createRouter({
                 {
                     path: '/',
                     name: 'Contato',
-                    component: () => import('@/views/uikit/TableDoc.vue')
+                    component: () => import('@/views/uikit/contato.vue')
                 }
             ],
             meta: {
