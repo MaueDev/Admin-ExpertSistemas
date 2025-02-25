@@ -1,0 +1,46 @@
+name: Deploy Produção
+
+on:
+  pull_request:
+    branches:
+      - master
+    types: 
+      - closed
+  push:
+    branches:
+      - master 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Rodar Linter e Prettier
+        run: |
+          npm run lint || echo "Problemas de lint encontrados."
+          npm run format || echo "Problemas de formatação corrigidos."
+
+      - name: Build do projeto
+        run: npm run build
+
+      - name: 📂 Enviando Arquivos
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.SERVER }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          local-dir: dist/
+          log-level: verbose
+          timeout: 1800000
