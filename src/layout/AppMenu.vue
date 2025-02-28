@@ -15,7 +15,7 @@ const model = ref([
             {
                 label: 'Textos',
                 icon: 'pi pi-fw pi-book',
-                to: ''
+                to: '/texto'
             }
         ]
     }

@@ -13,6 +13,11 @@ const router = createRouter({
                     path: '/',
                     name: 'Contato',
                     component: () => import('@/views/uikit/contato.vue')
+                },
+                {
+                    path: '/texto',
+                    name: 'Texto',
+                    component: () => import('@/views/uikit/textos.vue')
                 }
             ],
             meta: {
